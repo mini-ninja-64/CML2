@@ -16,9 +16,13 @@
 #include <vector>
 
 //pre processer vars
-#define DATA_STORE 0 //how data is stored, 0 - std::vectors, 1 - array, 2 - 2d array, 3 custom vector system
+#define DATA_STORE 0 //how data is stored, 0 - std::vectors(flat), 1 - array, 2 - 2D array, 3 - custom vector array
+#define DYNAMIC_ARRAY 0 // 0 - static array, 1 - dynamic
 
 namespace CML2P{
+    template <typename T, int R>
+    struct vector;
+    
     template <typename T, int R, int C>
     struct matrix{
     public:
@@ -45,15 +49,29 @@ namespace CML2P{
 #if (DATA_STORE == 0)
         std::vector<T> data; //vector data
 #elif (DATA_STORE == 1)
-        T * data; //can be static as templates now
+    #if (DYNAMIC_ARRAY)
+        T * data;
+    #else
+        T data[R*C];
+    #endif
 #elif (DATA_STORE == 2)
-        T ** data; //can be static as templates now
+    #if (DYNAMIC_ARRAY)
+        T ** data;
+    #else
+        T data[R][C];
+    #endif
 #elif (DATA_STORE == 3)
-        T ** data; //can be static as templates now
+    #if (DYNAMIC_ARRAY)
+        vector<T, R> * data;
+    #else
+        vector<T, R> data[C];
+    #endif
 #endif
     };
-    
+}
+
 #if (DATA_STORE == 3)
+namespace CML2P{
     template <typename T, int R>
     struct vector{
     public:
@@ -63,18 +81,20 @@ namespace CML2P{
         //op overloads
         vector operator-(const vector<T, R> &rhs);
         vector operator+(const vector<T, R> &rhs);
-        vector operator*(const matrix<T, R>& rhs);
+        vector operator*(const vector<T, R>& rhs);
         
         //data access
         T& operator()(const unsigned& row);
         const T& operator()(const unsigned& row) const;
         
         //fun-ctions lol
-        void print();
+        void printint();
+        void printfloat();
         
     private:
-    }
-#endif
+    };
 }
+#endif
+
 #pragma GCC visibility pop
 #endif /* CMLPrivate_hpp */
