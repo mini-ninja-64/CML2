@@ -16,7 +16,7 @@
 #include <vector>
 
 //pre processer vars
-#define DATA_STORE 0 //how data is stored, 0 - std::vectors(flat), 1 - array, 2 - 2D array, 3 - custom vector array
+#define DATA_STORE 1 //how data is stored, 0 - std::vectors(flat), 1 - array, 2 - 2D array, 3 - custom vector array
 #define DYNAMIC_ARRAY 0 // 0 - static array, 1 - dynamic
 
 namespace CML2P{
