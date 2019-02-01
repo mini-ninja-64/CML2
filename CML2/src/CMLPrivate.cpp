@@ -13,8 +13,6 @@ using namespace CML2P;
 //constructor
 template <typename T, int R, int C>
 matrix<T, R, C>::matrix(int fill) {
-    printf ("DATA_MODE: %i \n", DATA_STORE);
-
 //assign memory (if it is static there is no need to assign any memory
 #if (DYNAMIC_ARRAY)
     #if (DATA_STORE == 1)
