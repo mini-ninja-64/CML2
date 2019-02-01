@@ -36,7 +36,8 @@ namespace CML2P{
         const T& operator()(const unsigned& row, const unsigned& col) const;
         
         //fun-ctions lol
-        void print();
+        void printint();
+        void printfloat();
         
     private:
 //        int r; //row(y)

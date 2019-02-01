@@ -119,11 +119,23 @@ const T& matrix<T,R,C>::operator()(const unsigned& row, const unsigned& col) con
 
 //fun-ctions lol
 template <typename T, int R, int C>
-void matrix<T, R, C>::print(){
+void matrix<T, R, C>::printint(){
     printf ("DATA_MODE: %i, Size: %i*%i \n", DATA_STORE, R, C);
     for (unsigned row=0; row < R; row++) {
         for (unsigned col=0; col < C; col++) {
             printf ("%i,", (int)(*this)(row,col));
+        }
+        printf ("\n");
+    }
+}
+
+
+template <typename T, int R, int C>
+void matrix<T, R, C>::printfloat(){
+    printf ("DATA_MODE: %i, Size: %i*%i \n", DATA_STORE, R, C);
+    for (unsigned row=0; row < R; row++) {
+        for (unsigned col=0; col < C; col++) {
+            printf ("%f,", (float)(*this)(row,col));
         }
         printf ("\n");
     }

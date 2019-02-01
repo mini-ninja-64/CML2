@@ -15,6 +15,6 @@ int main(int argc, const char * argv[]) {
     m(3,3) = 9;
     CML2::mat4 m2(3);
     CML2::mat4 r = m*m2;
-    r.print();
+    r.printint();
     return 0;
 }
