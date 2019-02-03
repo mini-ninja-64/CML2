@@ -161,5 +161,32 @@ void matrix<T, R, C>::printfloat(){
 
 //Custom Vecs
 #if (DATA_STORE == 3)
-//TODO: implement vector functions and stuff
+template <typename T, int R>
+vector<T, R>::vector(int fill = 0){
+    for (int row=0; row<R; row++) {
+        (*this)(row,col) = fill; //fill vec
+    }
+}
+
+template <typename T, int R>
+vector<T, R>::~vector(){ }
+
+
+
+template <typename T, int R>
+void vector<T, R>::printint(){
+    printf ("DATA_MODE: %i, Size: %i*%i \n", DATA_STORE, R);
+    for (unsigned row=0; row < R; row++) {
+        printf ("%i\n", (int)(*this)(row,col));
+    }
+}
+
+
+template <typename T, int R>
+void vector<T, R>::printfloat(){
+    printf ("DATA_MODE: %i, Size: %i*%i \n", DATA_STORE, R);
+    for (unsigned row=0; row < R; row++) {
+        printf ("%f\n", (float)(*this)(row,col));
+    }
+}
 #endif

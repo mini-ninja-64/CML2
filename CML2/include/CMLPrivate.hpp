@@ -92,6 +92,7 @@ namespace CML2P{
         void printfloat();
         
     private:
+        T data[R];
     };
 }
 #endif
