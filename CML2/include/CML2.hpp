@@ -39,6 +39,33 @@ namespace CML2 {
     
     typedef CML2P::matrix<float, 2, 4> mat2x4;
     typedef CML2P::matrix<float, 2, 3> mat2x3;
+    
+    //projection matrix constructpors
+    mat4 Perspective(float fovY, float aspectRatio, float nearPlane, float farPlane);
+    mat4 Ortho(float left, float right, float top, float bottom, float nearPlane, float farPlane);
+    mat4 lookAt(float eye, float center, float up);
+    
+    template<typename T, int R, int C>
+    CML2P::matrix<T, R, C> inverse(CML2P::matrix<float, R, C> m);
+    template<typename T, int R, int C>
+    T determinant(CML2P::matrix<T, R, C> m);
+    /*
+     how to determinant:
+     go through top row number (a,b,c,d) and create a new equation like this
+        w,x,y,z = create a matrix of size <R-1,C-1> set the contents to be all excluding first row and column of the currently selected integer
+        determinant = +a(determinant(w))-b(determinant(x))+c(determinant(y))-d(determinant(z))...
+     
+     https://en.wikipedia.org/wiki/Minor_(linear_algebra)#Inverse_of_a_matrix ty wiki
+     how to inverse:
+     inverse = (1/det(M))*adjugate(M)
+     whats the adjugate matrix?
+        the "transpose" of the co-factor matrix (transpose means swap r and c)
+     
+     whats a co-factor matrix?
+     
+     inverse optimisations:
+        have pre calcualted equations or something for 4x4, 3x3, 2x2 as these are common and calcualtiong inverse on the fly will probs be intensive
+     */
 }
 
 #pragma GCC visibility pop

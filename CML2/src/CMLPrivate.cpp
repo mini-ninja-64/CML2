@@ -34,7 +34,11 @@ matrix<T, R, C>::matrix(int fill) {
 #else
     for (int row=0; row<R; row++) {
         for (int col=0; col<C; col++) {
-            (*this)(row,col) = fill; //fill matirx
+            if(row==col){ //could do a switch i guess :think:
+                (*this)(row,col) = fill;
+            }else{
+                (*this)(row,col) = 0; //fill matirx
+            }
         }
     }
 #endif
@@ -171,7 +175,16 @@ vector<T, R>::vector(int fill = 0){
 template <typename T, int R>
 vector<T, R>::~vector(){ }
 
+//data access
+template <typename T, int R, int C>
+T& matrix<T,R,C>::operator()(const unsigned& row, const unsigned& col) {
+    return this->data[(row*C)+col]; //single array
+}
 
+template <typename T, int R, int C>
+const T& matrix<T,R,C>::operator()(const unsigned& row, const unsigned& col) const {
+    return this->data[(row*C)+col]; //single array
+}
 
 template <typename T, int R>
 void vector<T, R>::printint(){

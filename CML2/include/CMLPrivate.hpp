@@ -81,7 +81,6 @@ namespace CML2P{
         //op overloads
         vector operator-(const vector<T, R> &rhs);
         vector operator+(const vector<T, R> &rhs);
-        vector operator*(const vector<T, R>& rhs);
         
         //data access
         T& operator()(const unsigned& row);
